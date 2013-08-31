@@ -57,5 +57,10 @@ var app = {
 				'Speed: '             + position.coords.speed             + '\n' +
 				'Timestamp: '         + position.timestamp                + '\n');
 		});
+
+		receivedElement.on("click", function()
+		{
+			alert("HI");
+		})
     }
 };
