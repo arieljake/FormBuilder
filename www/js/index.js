@@ -63,12 +63,15 @@ var app = {
 			var scanner = null;
 			// various versions just in case...
 			if ('plugins' in window && 'barcodeScanner' in window.plugins) {
+				alert("window.plugins.barcodeScanner");
 				scanner = window.plugins.barcodeScanner;
 			}
 			else if ('barcodeScanner' in window) {
-				scanner = window.plugins.barcodeScanner;
+				alert("window.barcodeScanner");
+				scanner = window.barcodeScanner;
 			}
 			else if ('cordova' in window) {
+				alert("cordova");
 				scanner = cordova.require("cordova/plugin/BarcodeScanner");
 			}
 			// always getting here......
@@ -77,7 +80,17 @@ var app = {
 			}
 			else
 			{
-				alert(scanner);
+				scanner.scan(
+					function (result) {
+						alert("We got a barcode\n" +
+							"Result: " + result.text + "\n" +
+							"Format: " + result.format + "\n" +
+							"Cancelled: " + result.cancelled);
+					},
+					function (error) {
+						alert("Scanning failed: " + error);
+					}
+				);
 			}
 		})
     }
