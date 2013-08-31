@@ -48,7 +48,7 @@ var app = {
 
 		navigator.geolocation.getCurrentPosition(function(position)
 		{
-			receivedElement.text('Latitude: '          + position.coords.latitude          + '\n' +
+			alert('Latitude: '          + position.coords.latitude          + '\n' +
 				'Longitude: '         + position.coords.longitude         + '\n' +
 				'Altitude: '          + position.coords.altitude          + '\n' +
 				'Accuracy: '          + position.coords.accuracy          + '\n' +
