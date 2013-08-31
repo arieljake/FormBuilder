@@ -58,7 +58,7 @@ var app = {
 				'Timestamp: '         + position.timestamp                + '\n');
 		});
 
-		receivedElement.on("click", function()
+		receivedElement.addEventListener("click", function()
 		{
 			alert("HI");
 		})
