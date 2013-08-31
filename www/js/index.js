@@ -76,10 +76,11 @@ var app = {
 			}
 			// always getting here......
 			if (scanner == null) {
-				log("couldn't find any scanner");
+				alert("couldn't find any scanner");
 			}
 			else
 			{
+				alert("found a scanner");
 				scanner.scan(
 					function (result) {
 						alert("We got a barcode\n" +
