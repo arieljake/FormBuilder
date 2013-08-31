@@ -61,26 +61,10 @@ var app = {
 		receivedElement.addEventListener("click", function()
 		{
 			var scanner = null;
-			// various versions just in case...
-			if ('plugins' in window && 'barcodeScanner' in window.plugins) {
-				alert("window.plugins.barcodeScanner");
-				scanner = window.plugins.barcodeScanner;
-			}
-			else if ('barcodeScanner' in window) {
-				alert("window.barcodeScanner");
-				scanner = window.barcodeScanner;
-			}
-			else if ('cordova' in window) {
-				alert("cordova");
-				scanner = cordova.require("cordova/plugin/BarcodeScanner");
-			}
-			// always getting here......
-			if (scanner == null) {
-				alert("couldn't find any scanner");
-			}
-			else
+			scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
+			if (scanner)
 			{
-				alert("found a scanner");
 				scanner.scan(
 					function (result) {
 						alert("We got a barcode\n" +
