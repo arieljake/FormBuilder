@@ -60,7 +60,7 @@ var app = {
 
 		receivedElement.addEventListener("click", function()
 		{
-			alert("HI");
+			alert(BarcodeScanner);
 		})
     }
 };
