@@ -31,7 +31,7 @@
 	<feature name="http://api.phonegap.com/1.0/geolocation"/>
 
 	<feature name="debug-server" required="true">
-		<param name="domain" value="localhost"/>
+		<param name="domain" value="192.168.1.139"/>
 		<param name="key" value="testApp"/>
 	</feature>
 
