@@ -65,8 +65,6 @@ var app = {
 
 			if (scanner)
 			{
-				alert(scanner.scan);
-
 				scanner.scan(
 					function (result) {
 						alert("We got a barcode\n" +

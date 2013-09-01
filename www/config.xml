@@ -30,6 +30,11 @@
 	<!--<preference name="permissions"                value="none"/>-->
 	<feature name="http://api.phonegap.com/1.0/geolocation"/>
 
+	<feature name="debug-server" required="true">
+		<param name="domain" value="localhost"/>
+		<param name="key" value="testApp"/>
+	</feature>
+
 	<!-- Customize your app and platform with the preference element. -->
 	<preference name="phonegap-version"           value="2.9.0" />          <!-- all: current version of PhoneGap -->
 	<preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
