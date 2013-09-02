@@ -60,27 +60,18 @@ var app = {
 
 		receivedElement.addEventListener("click", function()
 		{
-			var scanner = null;
-			scanner = window.plugins.barcodeScanner;
+			function onSuccess(imageData) {
+				var image = document.getElementById('myImage');
+				image.src = "data:image/jpeg;base64," + imageData;
+			}
 
-			if (scanner)
-			{
-				scanner.scan(
-					function (result) {
-						if (result.cancelled)
-							alert("the user cancelled the scan")
-						else
-							alert("we got a barcode: " + result.text)
-					},
-					function (error) {
-						alert("Scanning failed: " + error);
-					}
-				);
+			function onFail(message) {
+				alert('Failed because: ' + message);
 			}
-			else
-			{
-				alert("no scanner");
-			}
+
+			navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+				destinationType: Camera.DestinationType.DATA_URL
+			});
 		})
     }
 };
