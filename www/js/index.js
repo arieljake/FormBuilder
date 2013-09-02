@@ -60,19 +60,17 @@ var app = {
 
 		receivedElement.addEventListener("click", function()
 		{
-			alert(cordova);
 			var scanner = null;
-			scanner = cordova.require("cordova/plugin/BarcodeScanner");
+			scanner = window.plugins.barcodeScanner;
 
 			if (scanner)
 			{
-				alert(scanner);
 				scanner.scan(
 					function (result) {
-						alert("We got a barcode\n" +
-							"Result: " + result.text + "\n" +
-							"Format: " + result.format + "\n" +
-							"Cancelled: " + result.cancelled);
+						if (result.cancelled)
+							alert("the user cancelled the scan")
+						else
+							alert("we got a barcode: " + result.text)
 					},
 					function (error) {
 						alert("Scanning failed: " + error);
