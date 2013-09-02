@@ -60,11 +60,13 @@ var app = {
 
 		receivedElement.addEventListener("click", function()
 		{
+			alert(cordova);
 			var scanner = null;
 			scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
 			if (scanner)
 			{
+				alert(scanner);
 				scanner.scan(
 					function (result) {
 						alert("We got a barcode\n" +
