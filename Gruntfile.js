@@ -10,7 +10,21 @@ module.exports = function(grunt)
             {
                 esnext: true
             },
-            all: ['Gruntfile.js', 'src/**/*.js']
+            all: ['Gruntfile.js', 'src/js/**/*.js']
+        },
+        sass:
+        {
+            dist:
+            { 
+                options:
+                { 
+                    style: 'expanded'
+                },
+                files:
+                {
+                    'build/formBuilder.css': 'src/css/formBuilder.scss'
+                }
+            }
         },
         traceur:
         {
@@ -24,12 +38,12 @@ module.exports = function(grunt)
                 {
                     'build/formBuilder.js': [
                         'deps/EventEmitter.js',
-                        'src/ObjectDesc.js',
-                        'src/Field.js', 
-                        'src/Form.js', 
-                        'src/FormBuilder.js', 
-                        'src/FormLoader.js',
-                        'src/FormValidator.js'
+                        'src/js/ObjectDesc.js',
+                        'src/js/Field.js',
+                        'src/js/Form.js',
+                        'src/js/FormBuilder.js',
+                        'src/js/FormLoader.js',
+                        'src/js/FormValidator.js'
                     ]
                 }
             },
@@ -44,8 +58,22 @@ module.exports = function(grunt)
                     flatten: true,
                     cwd: 'build',
                     src: ['formBuilder.js'],
-                    dest: 'examples/js/',
+                    dest: 'examples/public/js',
                     filter: 'isFile'
+                },
+                {
+                    expand: true,
+                    flatten: true,
+                    cwd: 'build',
+                    src: 'formBuilder.css',
+                    dest: 'examples/public/css'
+                },
+                {
+                    expand: true,
+                    flatten: true,
+                    cwd: 'samples',
+                    src: 'form.json',
+                    dest: 'examples/public/data'
                 }]
             }
         },
@@ -71,7 +99,7 @@ module.exports = function(grunt)
             },
             main:
             {
-                files: ["src/**/*"],
+                files: ["Gruntfile.js", "src/**/*", "examples/**/*", "samples/form.json"],
                 tasks: [
                     "compile"
                 ]
@@ -80,13 +108,15 @@ module.exports = function(grunt)
     });
 
     grunt.loadNpmTasks('grunt-traceur');
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-newer');
-    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-text-replace');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-rename');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('compile', ['jshint:all', 'traceur', 'replace:main', 'copy:main']);
+    grunt.registerTask('compile', ['jshint:all', 'sass:dist', 'traceur', 'replace:main', 'copy:main']);
 
 };

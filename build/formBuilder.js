@@ -136,7 +136,7 @@ define([], function() {
     return this.fieldDef.id;
   };
   Field.prototype.getLabel = function() {
-    return this.fieldDef.label;
+    return this.fieldDef.label || this.getId();
   };
   Field.prototype.getSubLabel = function() {
     return this.fieldDef.subLabel;
@@ -257,7 +257,7 @@ define([], function() {
     var formDiv = $(formSelector);
     var formLoader;
     var formValidator;
-    formDiv.addClass("form-all");
+    formDiv.addClass("formBuilderForm");
     async.parallel([function(done) {
       async.forEachSeries(self.fields, function(field, next) {
         self.addField(formDiv, field, next);

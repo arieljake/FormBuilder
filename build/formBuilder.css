@@ -1,0 +1,30 @@
+.formBuilderForm {
+  display: block;
+}
+.formBuilderForm .form-label {
+  width: 150px !important;
+}
+.formBuilderForm .form-label-left {
+  width: 150px !important;
+  float: left;
+  display: inline-block;
+  text-align: left;
+  padding: 3px;
+  white-space: normal;
+}
+.formBuilderForm .form-line {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.formBuilderForm .form-label-right {
+  width: 150px !important;
+}
+.formBuilderForm .form-all {
+  width: 100%;
+  color: #555 !important;
+  font-family: 'Lucida Grande';
+  font-size: 14px;
+}
+.formBuilderForm .form-radio-item label, .formBuilderForm .form-checkbox-item label, .formBuilderForm .form-grading-label, .formBuilderForm .form-header {
+  color: #555;
+}

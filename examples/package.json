@@ -1,0 +1,14 @@
+{
+  "name": "FormBuilderExamples",
+  "version": "0.0.1",
+  "description": "example app for viewing FormBuilder in action",
+  "main": "web.js",
+  "scripts": {
+    "start": "node web.js"
+  },
+  "author": "Ariel Jakobovits",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.3.1"
+  }
+}

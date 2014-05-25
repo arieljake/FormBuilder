@@ -10,7 +10,7 @@ Field.prototype.getId = function()
 
 Field.prototype.getLabel = function()
 {
-    return this.fieldDef.label;
+    return this.fieldDef.label || this.getId();
 };
 
 Field.prototype.getSubLabel = function()

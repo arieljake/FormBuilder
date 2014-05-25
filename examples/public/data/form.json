@@ -1,0 +1,17 @@
+{
+    "fields": [
+        {
+            "id": "name",
+            "type": "text",
+            "label": "Name"
+        }
+    ],
+    "buttons": {
+        "submit": {
+            "label": "Save"
+        },
+        "cancel": {
+            "visible": false
+        }
+    }
+}

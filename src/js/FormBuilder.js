@@ -17,7 +17,7 @@ FormBuilder.prototype.buildForm = function(formSelector, cb)
     var formLoader;
     var formValidator;
 
-    formDiv.addClass("form-all");
+    formDiv.addClass("formBuilderForm");
 
     async.parallel(
         [

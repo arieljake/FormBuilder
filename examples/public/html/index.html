@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" media="all" href="/css/formBuilder.css">
+
+    <script type="text/javascript" src="/js/require.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/js/underscore-min.js"></script>
+    <script type="text/javascript" src="/js/async.min.js"></script>
+    <script type="text/javascript">
+        window.onload = function()
+        {
+            var FormBuilder;
+            var formBuilder;
+            var curForm;
+
+            function buildForm(config)
+            {
+                if (curForm)
+                    curForm.off("submit", onFormSubmit);
+
+                formBuilder = new FormBuilder.FormBuilder(config);
+                formBuilder.buildForm(".form", function(err, form)
+                {
+                    curForm = form;
+                    curForm.on("submit", onFormSubmit);
+                });
+            }
+
+            function onFormSubmit(values)
+            {
+                console.dir(values);
+                $("#output").val(JSON.stringify(values, undefined, 4));
+            }
+            
+            require(["/js/formBuilder.js"], function(FormBuilderLib)
+            {
+                FormBuilder = FormBuilderLib;
+                
+                $.get("/data/form.json", function(myForm)
+                {
+                    $("#formConfig").val(JSON.stringify(myForm, undefined, 4));
+
+                    buildForm(myForm);
+                });
+            });
+
+            $("#updateFormLink").click(function(e)
+            {
+                e.preventDefault();
+
+                try
+                {
+                    var formConfigStr = $("#formConfig").val();
+                    var formConfig = JSON.parse(formConfigStr);
+
+                    $(".form").empty();
+                    buildForm(formConfig);
+                }
+                catch (e)
+                {
+                    console.dir(e);
+                }
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <div style="width: 50%; float: left;">
+        <h2>Form:</h2>
+        <div class='form'></div>
+
+        <h2>Form Config:</h2>
+        <a id="updateFormLink" href="#updateForm">Update Form</a>
+        <textarea id="formConfig" style="width: 100%; height: 100%"></textarea>
+    </div>
+    <div style="width: 50%; float: left;">
+        <h2>Serialized Output:</h2>
+        <textarea id="output" style="width: 100%; height: 100%"></textarea>
+    </div>
+</body>
+
+</html>
