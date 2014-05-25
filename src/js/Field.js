@@ -8,6 +8,11 @@ Field.prototype.getId = function()
     return this.fieldDef.id;
 };
 
+Field.prototype.getType = function()
+{
+    return this.fieldDef.type;
+};
+
 Field.prototype.getLabel = function()
 {
     return this.fieldDef.label || this.getId();
@@ -16,11 +21,6 @@ Field.prototype.getLabel = function()
 Field.prototype.getSubLabel = function()
 {
     return this.fieldDef.subLabel;
-};
-
-Field.prototype.getType = function()
-{
-    return this.fieldDef.type;
 };
 
 Field.prototype.getNumericPrecision = function()
@@ -50,7 +50,7 @@ Field.prototype.getOptionsUrl = function()
 
 Field.prototype.isRequired = function()
 {
-    return this.fieldDef.isRequired === true;
+    return this.fieldDef.required === true;
 };
 
 

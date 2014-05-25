@@ -1,0 +1,14 @@
+{
+	"id": "button",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+    "properties": {
+        "label": {
+            "type": "string"
+        },
+        "visible": {
+            "type": "boolean"
+        }
+    },
+    "additionalProperties": false
+}

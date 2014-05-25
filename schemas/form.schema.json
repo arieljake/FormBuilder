@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "type": "array",
+            "items": {
+                "$ref": "field"
+            }
+        },
+        "buttons": {
+            "type": "object",
+            "properties": {
+                "submit": {
+                    "$ref": "button"
+                },
+                "cancel": {
+                    "$ref": "button"
+                }
+            }
+        }
+    },
+    "additionalProperties": false,
+    "required": ["fields"]
+}

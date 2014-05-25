@@ -1,0 +1,49 @@
+{
+    "type": "object",
+    "properties":
+    {
+        "id":
+        {
+            "type": "string"
+        },
+        "type":
+        {
+            "enum": ["checkbox", "date", "datetime", "display", "file", "hidden", "number", "select", "subForm", "text", "textarea"]
+        },
+        "label":
+        {
+            "type ": "string"
+        },
+        "subLabel":
+        {
+            "type ": "string"
+        },
+        "precision":
+        {
+            "type": "number"
+        },
+        "linkText":
+        {
+            "type": "string"
+        },
+        "inputDesc":
+        {
+            "type": "string"
+        },
+        "options":
+        {
+            "type": "array"
+        },
+        "optionsUrl":
+        {
+            "type": "string"
+        },
+        "required":
+        {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "additionalProperties": false,
+    "required": ["id","type"]
+}
