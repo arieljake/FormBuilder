@@ -19,7 +19,7 @@ Form.prototype.attachToSubmitButton = function()
         var values = self.loader.pullValues();
         var errors = self.validator.validate(values);
 
-        if (_.keys(errors).length > 0)
+        if (Utils.keys(errors).length > 0)
             self.onInvalidForm(values, errors);
         else
             self.onSubmit(values);
@@ -49,7 +49,7 @@ Form.prototype.loadRecord = function(record)
 
 Form.prototype.updateRecord = function(record, values)
 {
-    _.extend(record, values);
+    Utils.extend(record, values);
 };
 
 Form.prototype.onSubmit = function(values)

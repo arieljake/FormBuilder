@@ -38,10 +38,13 @@ module.exports = function(grunt)
                 {
                     'build/formBuilder.js': [
                         'deps/EventEmitter.js',
+                        'deps/async.js',
+                        'src/js/Utils.js',
                         'src/js/ObjectDesc.js',
                         'src/js/Field.js',
                         'src/js/Form.js',
                         'src/js/FormBuilder.js',
+                        'src/js/FormConfig.js',
                         'src/js/FormLoader.js',
                         'src/js/FormValidator.js'
                     ]

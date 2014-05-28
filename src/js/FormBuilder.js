@@ -5,7 +5,8 @@ var FormBuilder = function(config)
     {
         return new Field(fieldDef);
     });
-    this.buttons = this.createButtonConfig(config.buttons || {});
+    this.buttons = this.createButtonConfig(config.buttons ||
+    {});
 };
 
 FormBuilder.prototype = {};
@@ -100,7 +101,7 @@ FormBuilder.prototype.buildField = function(field, cb)
 {
     var self = this;
     var formField = $("<div></div>");
-    
+
     formField.addClass("form-line");
 
     self.buildInput(field, function(err, input)
@@ -127,7 +128,7 @@ FormBuilder.prototype.buildLabel = function(field)
 
     var label = $("<label></label>");
     label.addClass("form-label-left");
-    label.attr("for", field.getId());
+    label.attr("for", field.getSelector());
     label.text(field.getLabel());
 
     if (field.isRequired())
@@ -143,7 +144,7 @@ FormBuilder.prototype.buildSubLabel = function(field)
 
     var subLabel = $("<label></label>");
     subLabel.addClass("form-sub-label");
-    subLabel.attr("for", field.getId());
+    subLabel.attr("for", field.getSelector());
     subLabel.html(field.getSubLabel());
 
     return subLabel;
@@ -228,7 +229,7 @@ FormBuilder.prototype.buildInput = function(field, cb)
             throw new Error("[Form Builder] buildInput() error - unexpected field type: " + field.getType());
     }
 
-    control.attr("id", field.getId());
+    control.attr("id", field.getSelector());
     input.append(control);
 
     if (field.getInputDesc())
@@ -290,10 +291,6 @@ FormBuilder.prototype.buildButtons = function()
     var buttons = $("<div></div>");
     buttons.addClass("form-line");
 
-    var label = $("<label></label>");
-    label.addClass("form-label-left");
-    buttons.append(label);
-
     if (this.buttons.submit.isVisible())
     {
         var submitButton = $("<button type='submit'></button>");
@@ -318,12 +315,14 @@ FormBuilder.prototype.buildButtons = function()
 FormBuilder.prototype.createButtonConfig = function(config)
 {
     return {
-        submit: this.Button(_.defaults(config.submit || {},
+        submit: this.Button(Utils.defaults(config.submit ||
+        {},
         {
             label: "Submit",
             visible: true
         })),
-        cancel: this.Button(_.defaults(config.cancel || {},
+        cancel: this.Button(Utils.defaults(config.cancel ||
+        {},
         {
             label: "Cancel",
             visible: true

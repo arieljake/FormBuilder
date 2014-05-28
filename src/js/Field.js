@@ -8,6 +8,11 @@ Field.prototype.getId = function()
     return this.fieldDef.id;
 };
 
+Field.prototype.getSelector = function()
+{
+    return this.fieldDef.selector;
+};
+
 Field.prototype.getType = function()
 {
     return this.fieldDef.type;

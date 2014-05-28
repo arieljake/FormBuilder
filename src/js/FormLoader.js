@@ -23,8 +23,9 @@ FormLoader.prototype.loadForm = function(record)
 FormLoader.prototype.loadField = function(field, record)
 {
     var $form = this.$form;
+    var fieldSelector = field.getSelector();
     var fieldId = field.getId();
-    var $field = $form.find("#" + fieldId);
+    var $field = $form.find("#" + fieldSelector);
     var value = ObjectDesc(record, fieldId);
 
     switch (field.getType())
@@ -103,8 +104,8 @@ FormLoader.prototype.pullValues = function()
 
     self.fields.forEach(function(field)
     {
-        var fieldId = field.getId();
-        var $field = $form.find("#" + fieldId);
+        var fieldSelector = field.getSelector();
+        var $field = $form.find("#" + fieldSelector);
 
         self.setValue(field, $field, values);
     });
@@ -132,13 +133,18 @@ FormLoader.prototype.setValue = function(field, $field, values)
             break;
 
         case "number":
-            if (field.isIntegerField())
+            value = $field.val();
+
+            if (value)
             {
-                value = parseInt($field.val().trim());
-            }
-            else if (field.isDecimalField())
-            {
-                value = parseFloat($field.val().trim());
+                if (field.isIntegerField())
+                {
+                    value = parseInt(value.trim());
+                }
+                else if (field.isDecimalField())
+                {
+                    value = parseFloat(value.trim());
+                }
             }
             break;
 
@@ -154,11 +160,17 @@ FormLoader.prototype.setValue = function(field, $field, values)
             break;
 
         case "text":
-            value = $field.val().trim();
-            break;
+            value = $field.val();
             
+            if (value)
+                value = value.trim();
+            break;
+
         case "textarea":
-            value = $field.val().trim();
+            value = $field.val();
+            
+            if (value)
+                value = value.trim();
             break;
 
         default:

@@ -5,7 +5,7 @@ var ObjectDesc = function(obj, name, value, doDelete)
         return undefined;
 
     var objRef = obj;
-    var nameParts = _.isArray(name) ? name : name.split(".");
+    var nameParts = Utils.isArray(name) ? name : name.split(".");
 
     if (nameParts.length > 1)
     {
@@ -15,7 +15,7 @@ var ObjectDesc = function(obj, name, value, doDelete)
             var property = nameParts.shift();
             var index = parseInt(property);
 
-            if (_.isArray(objRef) && !isNaN(index) && index.toString()
+            if (Utils.isArray(objRef) && !isNaN(index) && index.toString()
                 .length == property.length)
             {
                 if (index < 0)

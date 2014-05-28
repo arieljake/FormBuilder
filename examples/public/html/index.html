@@ -19,7 +19,9 @@
                 if (curForm)
                     curForm.off("submit", onFormSubmit);
 
-                formBuilder = new FormBuilder.FormBuilder(config);
+                var formConfig = FormBuilder.FormConfig.validateConfig(config);
+                
+                formBuilder = new FormBuilder.FormBuilder(formConfig);
                 formBuilder.buildForm(".form", function(err, form)
                 {
                     curForm = form;
