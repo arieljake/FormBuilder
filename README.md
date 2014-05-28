@@ -15,6 +15,7 @@ For those customizations to a form that we might want to make for which there ar
 
 ##Sample Usage
 
+```
 var schemaStr = fs.readFileSync("mySchema.json","utf8");
 var schema = JSON.parse(schemaStr);
 var formBuilder = new FormBuilder(schema);
@@ -36,3 +37,4 @@ formBuilder.buildForm("#form1", function(err,form)
     alert("We got issues...");
   });
 });
+```
