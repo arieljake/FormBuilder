@@ -31,12 +31,12 @@ FormLoader.prototype.loadField = function(field, record)
     switch (field.getType())
     {
         case "checkbox":
-            field.attr("checked", (value == "true" || value === true) ? true : false);
+            $field.attr("checked", (value == "true" || value === true) ? true : false);
             break;
 
         case "datetime":
             if (value)
-                field.datetimepicker(
+                $field.datetimepicker(
                 {
                     value: moment(value).format("MM/DD/YYYY h:mm a")
                 });
@@ -45,53 +45,53 @@ FormLoader.prototype.loadField = function(field, record)
         case "select":
             if (!value)
             {
-                field.val(null);
+                $field.val(null);
             }
             else
             {
-                field.val(value); // in case we have id and not _id+name object
+                $field.val(value); // in case we have id and not _id+name object
             }
             break;
 
         case "subForm":
-            field.subform('setValue', value);
+            $field.subform('setValue', value);
 
             switch (field.valueType)
             {
                 case "array.fk":
                     if (value && value.length > 0)
-                        field.text(_.pluck(value, "name").join(", "));
+                        $field.text(_.pluck(value, "name").join(", "));
                     else
-                        field.text(field.attr("linkText"));
+                        $field.text(field.attr("linkText"));
                     break;
 
                 case "fk":
                     if (value)
-                        field.text(value.name);
+                        $field.text(value.name);
                     else
-                        field.text(field.attr("linkText"));
+                        $field.text(field.attr("linkText"));
                     break;
             }
             break;
 
         case "display":
-            field.text(value || null);
+            $field.text(value || null);
             break;
 
         case "number":
-            field.val(value || null);
+            $field.val(value || null);
             break;
 
         case "text":
-            field.val(value || null);
+            $field.val(value || null);
             break;
 
         case "textarea":
-            field.val(value || null);
+            $field.val(value || null);
             break;
 
         default:
-            field.val(value || null);
+            $field.val(value || null);
             break;
     }
 };

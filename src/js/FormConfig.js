@@ -20,7 +20,7 @@ FormConfig.validateConfig = function(config)
     {
         field.selector = field.id.replace(".", "_");
     });
-    
+
     return config;
 };
 
@@ -45,6 +45,19 @@ FormConfig.addObjectToConfig = function(config, schema, path)
     for (var key in schema.properties)
     {
         FormConfig.addSchemaToConfig(config, schema.properties[key], path.concat(key));
+    }
+
+    if (schema.required)
+    {
+        schema.required.forEach(function(requiredField)
+        {
+            var field = config.fields.filter(function(field)
+            {
+                return field.id == requiredField;
+            })[0];
+            
+            field.required = true;
+        });
     }
 };
 

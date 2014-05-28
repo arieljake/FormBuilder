@@ -1,11 +1,10 @@
 export
-var FormValidator = function(fields, formDivSelector)
+var FieldValidator = function(fields)
 {
     this.fields = fields;
-    this.formDiv = $(formDivSelector);
 };
 
-FormValidator.prototype.validate = function(values)
+FieldValidator.prototype.validate = function(values)
 {
     var self = this;
     var validationErrors = {};
@@ -18,16 +17,16 @@ FormValidator.prototype.validate = function(values)
         var fieldErrors = self.validateField(field, values);
 
         if (fieldErrors.length > 0)
-            validationErrors[field.id] = fieldErrors;
+            validationErrors[field.getId()] = fieldErrors;
     });
 
     return validationErrors;
 };
 
-FormValidator.prototype.validateField = function(fieldDef, values)
+FieldValidator.prototype.validateField = function(field, values)
 {
-    var value = values[fieldDef.id];
-    var validations = this.getValidations(fieldDef);
+    var value = ObjectDesc(values,field.getId());
+    var validations = this.getValidations(field);
     var errors = [];
 
     validations.forEach(function(validation)
@@ -41,7 +40,7 @@ FormValidator.prototype.validateField = function(fieldDef, values)
     return errors;
 };
 
-FormValidator.prototype.getValidations = function(field)
+FieldValidator.prototype.getValidations = function(field)
 {
     var validations = [];
 
@@ -75,12 +74,12 @@ FormValidator.prototype.getValidations = function(field)
     return validations;
 };
 
-FormValidator.prototype.validateRequiredTextField = function(value)
+FieldValidator.prototype.validateRequiredTextField = function(value)
 {
     return (value !== undefined) && (value.toString().length > 0);
 };
 
-FormValidator.prototype.validateNumericField = function(value)
+FieldValidator.prototype.validateNumericField = function(value)
 {
     return !isNaN(value);
 };

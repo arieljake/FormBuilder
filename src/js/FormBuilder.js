@@ -353,7 +353,7 @@ FormBuilder.prototype.buildLoader = function(formDivSelector, cb)
 
 FormBuilder.prototype.buildValidator = function(formDivSelector, cb)
 {
-    var formValidator = new FormValidator(this.fields, formDivSelector);
+    var formValidator = FormValidatorFactory.forFields(this.fields);
 
     cb(formValidator);
 };

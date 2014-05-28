@@ -39,6 +39,7 @@ module.exports = function(grunt)
                     'build/formBuilder.js': [
                         'deps/EventEmitter.js',
                         'deps/async.js',
+                        'deps/tv4.js',
                         'src/js/Utils.js',
                         'src/js/ObjectDesc.js',
                         'src/js/Field.js',
@@ -46,7 +47,9 @@ module.exports = function(grunt)
                         'src/js/FormBuilder.js',
                         'src/js/FormConfig.js',
                         'src/js/FormLoader.js',
-                        'src/js/FormValidator.js'
+                        'src/js/FieldValidator.js',
+                        'src/js/SchemaValidator.js',
+                        'src/js/FormValidatorFactory.js'
                     ]
                 }
             },
