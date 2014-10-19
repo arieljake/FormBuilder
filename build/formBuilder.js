@@ -2838,7 +2838,7 @@ define([], function() {
   };
   FormConfig.validateConfig = function(config) {
     config.fields.forEach(function(field) {
-      field.selector = field.id.replace(".", "_");
+      field.selector = field.id.replace(/\./g, "_");
     });
     return config;
   };
@@ -2847,6 +2847,10 @@ define([], function() {
       FormConfig.addObjectToConfig(config, schema, path);
     } else if (schema.type == "string") {
       FormConfig.addStringToConfig(config, schema, path);
+    } else if (schema.type == "number") {
+      FormConfig.addNumberToConfig(config, schema, path);
+    } else if (schema.type == "boolean") {
+      FormConfig.addBooleanToConfig(config, schema, path);
     } else {
       throw new Error("unsupported schema type: " + schema.type);
     }
@@ -2869,6 +2873,22 @@ define([], function() {
     var field = {};
     field.id = path.join(".");
     field.type = schema.maxLength && schema.maxLength > 100 ? "textarea" : "text";
+    field.label = schema.title || (id[0].toUpperCase() + id.substr(1));
+    config.fields.push(field);
+  };
+  FormConfig.addNumberToConfig = function(config, schema, path) {
+    var id = path[path.length - 1];
+    var field = {};
+    field.id = path.join(".");
+    field.type = "number";
+    field.label = schema.title || (id[0].toUpperCase() + id.substr(1));
+    config.fields.push(field);
+  };
+  FormConfig.addBooleanToConfig = function(config, schema, path) {
+    var id = path[path.length - 1];
+    var field = {};
+    field.id = path.join(".");
+    field.type = "checkbox";
     field.label = schema.title || (id[0].toUpperCase() + id.substr(1));
     config.fields.push(field);
   };

@@ -123,6 +123,6 @@ module.exports = function(grunt)
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('compile', ['jshint:all', 'sass:dist', 'traceur', 'replace:main', 'copy:main']);
+    grunt.registerTask('build', ['jshint:all', 'sass:dist', 'traceur', 'replace:main', 'copy:main']);
 
 };
